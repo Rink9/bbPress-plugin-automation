@@ -29,46 +29,45 @@ describe( 'Automate forum from backend', () => {
         await page.click( "#publish" ); 
     });
 
-    // it( 'should change the visibility on forum as private', async () => {
-    //     await page.setViewport( { width: 1366, height: 768 } );
-    //     await page.click( "#menu-posts-forum" );
-    //     await page.waitForSelector( '#menu-posts-forum > ul > li:nth-child(3) > a', { visible: true } );
-    //     await page.click( "#menu-posts-forum > ul > li:nth-child(3) > a" );
-    //     await page.waitForSelector( '#title', { visible: true } );
-    //     await page.type( '#title','Marketing' );
-    //     await page.click( "#bbp_forum_visibility_select" );
-    //     const attr = await page.$$eval("#bbp_forum_visibility_select > option:nth-child(2)", el => el.map(x => x.getAttribute("value")));
-    //     await page.select( "#bbp_forum_visibility_select", attr[0] );
-    //     await page.waitForSelector( '#publish', { visible: true } );
-    //     await page.click( "#publish" ); 
-    // });
+    it( 'should change the visibility on forum as private', async () => {
+        await page.setViewport( { width: 1366, height: 768 } );
+        await page.click( "#menu-posts-forum" );
+        await page.waitForSelector( '#menu-posts-forum > ul > li:nth-child(3) > a', { visible: true } );
+        await page.click( "#menu-posts-forum > ul > li:nth-child(3) > a" );
+        await page.waitForSelector( '#title', { visible: true } );
+        await page.type( '#title','Marketing' );
+        await page.click( "#bbp_forum_visibility_select" );
+        const attr = await page.$$eval("#bbp_forum_visibility_select > option:nth-child(2)", el => el.map(x => x.getAttribute("value")));
+        await page.select( "#bbp_forum_visibility_select", attr[0] );
+        await page.waitForSelector( '#publish', { visible: true } );
+        await page.click( "#publish" ); 
+    });
 
-    // it( 'should change the visibility on forum as hidden', async () => {
-    //     await page.setViewport( { width: 1366, height: 768 } );
-    //     await page.click( "#menu-posts-forum" );
-    //     await page.waitForSelector( '#menu-posts-forum > ul > li:nth-child(3) > a', { visible: true } );
-    //     await page.click( "#menu-posts-forum > ul > li:nth-child(3) > a" );
-    //     await page.waitForSelector( '#title', { visible: true } );
-    //     await page.type( '#title','Visual Designer' );
-    //     await page.click( "#bbp_forum_visibility_select" );
-    //     const attr = await page.$$eval("#bbp_forum_visibility_select > option:nth-child(3)", el => el.map(x => x.getAttribute("value")));
-    //     await page.select( "#bbp_forum_visibility_select", attr[0] );
-    //     await page.waitForSelector( '#publish', { visible: true } );
-    //     await page.click( "#publish" );
-    // });
+    it( 'should change the visibility on forum as hidden', async () => {
+        await page.setViewport( { width: 1366, height: 768 } );
+        await page.click( "#menu-posts-forum" );
+        await page.waitForSelector( '#menu-posts-forum > ul > li:nth-child(3) > a', { visible: true } );
+        await page.click( "#menu-posts-forum > ul > li:nth-child(3) > a" );
+        await page.waitForSelector( '#title', { visible: true } );
+        await page.type( '#title','Visual Designer' );
+        await page.click( "#bbp_forum_visibility_select" );
+        const attr = await page.$$eval("#bbp_forum_visibility_select > option:nth-child(3)", el => el.map(x => x.getAttribute("value")));
+        await page.select( "#bbp_forum_visibility_select", attr[0] );
+        await page.waitForSelector( '#publish', { visible: true } );
+        await page.click( "#publish" );
+    });
 
-    // it( 'should change the status of a forum', async () => {
-    //     await page.setViewport( { width: 1366, height: 768 } );
-    //     await page.click( "#menu-posts-forum" );
-    //     await page.waitForSelector( '#menu-posts-forum > ul > li:nth-child(3) > a', { visible: true } );
-    //     await page.click( "#menu-posts-forum > ul > li:nth-child(3) > a" );
-    //     await page.waitForSelector( '#title', { visible: true } );
-    //     await page.type( '#title','Human Resource' );
-    //     await page.click( "#bbp_forum_status_select" );
-    //     const attr = await page.$$eval("#bbp_forum_status_select > option:nth-child(2)", el => el.map(x => x.getAttribute("value")));
-    //     await page.select( "#bbp_forum_status_select", attr[0] );
-    //     await page.waitForSelector( '#publish', { visible: true } );
-    //     await page.click( "#publish" );
-       
-    // });
+    it( 'should change the status of a forum', async () => {
+        await page.setViewport( { width: 1366, height: 768 } );
+        await page.click( "#menu-posts-forum" );
+        await page.waitForSelector( '#menu-posts-forum > ul > li:nth-child(3) > a', { visible: true } );
+        await page.click( "#menu-posts-forum > ul > li:nth-child(3) > a" );
+        await page.waitForSelector( '#title', { visible: true } );
+        await page.type( '#title','Human Resource' );
+        await page.click( "#bbp_forum_status_select" );
+        const attr = await page.$$eval("#bbp_forum_status_select > option:nth-child(2)", el => el.map(x => x.getAttribute("value")));
+        await page.select( "#bbp_forum_status_select", attr[0] );
+        await page.waitForSelector( '#publish', { visible: true } );
+        await page.click( "#publish" );
+    });
 });
