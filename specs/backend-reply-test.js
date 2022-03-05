@@ -2,6 +2,10 @@ import {
     visitAdminPage,
 } from '@wordpress/e2e-test-utils';
 
+import { 
+    isElementExist,
+ } from '../utils/helpers';
+
 describe( 'Automate reply from backend', () => {
     it( 'should create a new reply', async () => {
         await visitAdminPage( '/' );
@@ -12,6 +16,7 @@ describe( 'Automate reply from backend', () => {
         await page.waitForSelector( '#title', { visible: true } );
         await page.type( '#title','Reply on a topic' );
         await page.click( "#publish" );
+        expect( await isElementExist( "#sample-permalink" ) ).toBe( true );
     });
 
     it( 'should update reply status as pending', async () => {
@@ -26,6 +31,7 @@ describe( 'Automate reply from backend', () => {
         await page.select( "#post_status_select", attr[0] );
         await page.keyboard.press( 'Enter')
         await page.waitForSelector( '#publish', { visible: true } );
-        await page.click( '#publish' );  
+        await page.click( '#publish' );
+        expect( await isElementExist( "#sample-permalink" ) ).toBe( true );
     });
 });

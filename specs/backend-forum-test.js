@@ -2,6 +2,10 @@ import {
     visitAdminPage,
 } from '@wordpress/e2e-test-utils';
 
+import { 
+    isElementExist,
+ } from '../utils/helpers';
+
 describe( 'Automate forum from backend', () => {
     it( 'should create a new forum', async () => {
         await visitAdminPage( '/' );
@@ -12,9 +16,11 @@ describe( 'Automate forum from backend', () => {
         await page.waitForSelector( '#title', { visible: true } );
         await page.type( '#title','Engineering' );
         await page.click( "#publish" );
+        expect( await isElementExist( "#sample-permalink" ) ).toBe( true );
     });
 
     it( 'should create a subforum', async () => {
+        await visitAdminPage( '/' );
         await page.setViewport( { width: 1366, height: 768 } );
         await page.click( "#menu-posts-forum" );
         await page.waitForSelector( '#menu-posts-forum > ul > li:nth-child(3) > a', { visible: true } );
@@ -26,10 +32,12 @@ describe( 'Automate forum from backend', () => {
         await page.select( "#parent_id", attr[0] );
         await page.keyboard.press( 'Enter')
         await page.waitForSelector( '#publish', { visible: true } );
-        await page.click( "#publish" ); 
+        await page.click( "#publish" );
+        expect( await isElementExist( "#sample-permalink" ) ).toBe( true );
     });
 
     it( 'should change the visibility on forum as private', async () => {
+        await visitAdminPage( '/' );
         await page.setViewport( { width: 1366, height: 768 } );
         await page.click( "#menu-posts-forum" );
         await page.waitForSelector( '#menu-posts-forum > ul > li:nth-child(3) > a', { visible: true } );
@@ -40,7 +48,8 @@ describe( 'Automate forum from backend', () => {
         const attr = await page.$$eval("#bbp_forum_visibility_select > option:nth-child(2)", el => el.map(x => x.getAttribute("value")));
         await page.select( "#bbp_forum_visibility_select", attr[0] );
         await page.waitForSelector( '#publish', { visible: true } );
-        await page.click( "#publish" ); 
+        await page.click( "#publish" );
+        expect( await isElementExist( "#sample-permalink" ) ).toBe( true );
     });
 
     it( 'should change the visibility on forum as hidden', async () => {
@@ -55,6 +64,7 @@ describe( 'Automate forum from backend', () => {
         await page.select( "#bbp_forum_visibility_select", attr[0] );
         await page.waitForSelector( '#publish', { visible: true } );
         await page.click( "#publish" );
+        expect( await isElementExist( "#sample-permalink" ) ).toBe( true );
     });
 
     it( 'should change the status of a forum', async () => {
@@ -69,5 +79,6 @@ describe( 'Automate forum from backend', () => {
         await page.select( "#bbp_forum_status_select", attr[0] );
         await page.waitForSelector( '#publish', { visible: true } );
         await page.click( "#publish" );
+        expect( await isElementExist( "#sample-permalink" ) ).toBe( true );
     });
 });

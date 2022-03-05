@@ -12,6 +12,7 @@ describe( 'Automate topics from backend', () => {
         await page.waitForSelector( '#title', { visible: true } );
         await page.type( '#title','Quality Assurance' );
         await page.click( '#publish' );
+        expect( await isElementExist( "#sample-permalink" ) ).toBe( true );
     });
 
     it( 'should assign a topic to a forum', async () => {
@@ -26,7 +27,8 @@ describe( 'Automate topics from backend', () => {
         await page.select( "#parent_id", attr[0] );
         await page.keyboard.press( 'Enter')
         await page.waitForSelector( '#publish', { visible: true } );
-        await page.click( '#publish' ); 
+        await page.click( '#publish' );
+        expect( await isElementExist( "#sample-permalink" ) ).toBe( true );
     });
 
     it( 'should change topic type as sticky', async () => {
@@ -41,7 +43,8 @@ describe( 'Automate topics from backend', () => {
         await page.select( "#bbp_stick_topic_select", attr[0] );
         await page.keyboard.press( 'Enter')
         await page.waitForSelector( '#publish', { visible: true } );
-        await page.click( '#publish' ); 
+        await page.click( '#publish' );
+        expect( await isElementExist( "#sample-permalink" ) ).toBe( true ); 
     });
 
     it( 'should change topic type as super sticky', async () => {
@@ -56,7 +59,8 @@ describe( 'Automate topics from backend', () => {
         await page.select( "#bbp_stick_topic_select", attr[0] );
         await page.keyboard.press( 'Enter')
         await page.waitForSelector( '#publish', { visible: true } );
-        await page.click( '#publish' );  
+        await page.click( '#publish' );
+        expect( await isElementExist( "#sample-permalink" ) ).toBe( true );
     });
 
     it( 'should change topic status as closed', async () => {
@@ -71,7 +75,8 @@ describe( 'Automate topics from backend', () => {
         await page.select( "#post_status_select", attr[0] );
         await page.keyboard.press( 'Enter')
         await page.waitForSelector( '#publish', { visible: true } );
-        await page.click( '#publish' );  
+        await page.click( '#publish' );
+        expect( await isElementExist( "#sample-permalink" ) ).toBe( true );
     });
 
     it( 'should change topic status as pending', async () => {
@@ -86,7 +91,8 @@ describe( 'Automate topics from backend', () => {
         await page.select( "#post_status_select", attr[0] );
         await page.keyboard.press( 'Enter')
         await page.waitForSelector( '#publish', { visible: true } );
-        await page.click( '#publish' ); 
+        await page.click( '#publish' );
+        expect( await isElementExist( "#sample-permalink" ) ).toBe( true );
     });
 
     it( 'should change topic status as pending', async () => {
@@ -98,8 +104,7 @@ describe( 'Automate topics from backend', () => {
         await page.type( '#tag-name','Programming' );
         await page.type( '#tag-slug','Programming' );
         await page.type( '#tag-description','This topic is related to Programming' );
-        await page.click( '#submit' );
-        
+        await page.click( '#submit' ); 
     })
 });
 

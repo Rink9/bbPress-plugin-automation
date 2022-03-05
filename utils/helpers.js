@@ -15,3 +15,10 @@ export async function timesClick( element, count ) {
         await page.click( element );
     }
 }
+
+export async function isElementExist( element ){
+    if (await page.$(element) !== null) {
+       return true;
+    }
+    return false;
+}
