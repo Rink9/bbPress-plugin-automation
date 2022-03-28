@@ -3,21 +3,22 @@ import {
 } from '@wordpress/e2e-test-utils';
 
 describe( 'Automate topics from backend', () => {
-    it( 'should create a new topic', async () => {
+    beforeEach(async() => {
         await visitAdminPage( '/' );
         await page.setViewport( { width: 1366, height: 768 } );
         await page.click( '#menu-posts-topic' );
+    });
+
+    it( 'should create a new topic', async () => {
         await page.waitForSelector( '#menu-posts-topic > ul > li:nth-child(3) > a', { visible: true } );
         await page.click( '#menu-posts-topic > ul > li:nth-child(3) > a' );
         await page.waitForSelector( '#title', { visible: true } );
         await page.type( '#title','Quality Assurance' );
         await page.click( '#publish' );
-        expect( await isElementExist( "#sample-permalink" ) ).toBe( true );
+        await page.waitForSelector("#message");
     });
 
     it( 'should assign a topic to a forum', async () => {
-        await page.setViewport( { width: 1366, height: 768 } );
-        await page.click( '#menu-posts-topic' );
         await page.waitForSelector( '#menu-posts-topic > ul > li:nth-child(3) > a', { visible: true } );
         await page.click( '#menu-posts-topic > ul > li:nth-child(3) > a' );
         await page.waitForSelector( '#title', { visible: true } );
@@ -27,13 +28,11 @@ describe( 'Automate topics from backend', () => {
         await page.select( "#parent_id", attr[0] );
         await page.keyboard.press( 'Enter')
         await page.waitForSelector( '#publish', { visible: true } );
-        await page.click( '#publish' );
-        expect( await isElementExist( "#sample-permalink" ) ).toBe( true );
+        await page.click( '#publish' ); 
+        await page.waitForSelector("#message");
     });
 
     it( 'should change topic type as sticky', async () => {
-        await page.setViewport( { width: 1366, height: 768 } );
-        await page.click( '#menu-posts-topic' );
         await page.waitForSelector( '#menu-posts-topic > ul > li:nth-child(3) > a', { visible: true } );
         await page.click( '#menu-posts-topic > ul > li:nth-child(3) > a' );
         await page.waitForSelector( '#title', { visible: true } );
@@ -43,13 +42,11 @@ describe( 'Automate topics from backend', () => {
         await page.select( "#bbp_stick_topic_select", attr[0] );
         await page.keyboard.press( 'Enter')
         await page.waitForSelector( '#publish', { visible: true } );
-        await page.click( '#publish' );
-        expect( await isElementExist( "#sample-permalink" ) ).toBe( true ); 
+        await page.click( '#publish' ); 
+        await page.waitForSelector("#message");
     });
 
     it( 'should change topic type as super sticky', async () => {
-        await page.setViewport( { width: 1366, height: 768 } );
-        await page.click( '#menu-posts-topic' );
         await page.waitForSelector( '#menu-posts-topic > ul > li:nth-child(3) > a', { visible: true } );
         await page.click( '#menu-posts-topic > ul > li:nth-child(3) > a' );
         await page.waitForSelector( '#title', { visible: true } );
@@ -59,13 +56,11 @@ describe( 'Automate topics from backend', () => {
         await page.select( "#bbp_stick_topic_select", attr[0] );
         await page.keyboard.press( 'Enter')
         await page.waitForSelector( '#publish', { visible: true } );
-        await page.click( '#publish' );
-        expect( await isElementExist( "#sample-permalink" ) ).toBe( true );
+        await page.click( '#publish' );  
+        await page.waitForSelector("#message" , {timeout: 6000});
     });
 
     it( 'should change topic status as closed', async () => {
-        await page.setViewport( { width: 1366, height: 768 } );
-        await page.click( '#menu-posts-topic' );
         await page.waitForSelector( '#menu-posts-topic > ul > li:nth-child(3) > a', { visible: true } );
         await page.click( '#menu-posts-topic > ul > li:nth-child(3) > a' );
         await page.waitForSelector( '#title', { visible: true } );
@@ -75,13 +70,11 @@ describe( 'Automate topics from backend', () => {
         await page.select( "#post_status_select", attr[0] );
         await page.keyboard.press( 'Enter')
         await page.waitForSelector( '#publish', { visible: true } );
-        await page.click( '#publish' );
-        expect( await isElementExist( "#sample-permalink" ) ).toBe( true );
+        await page.click( '#publish' );  
+        await page.waitForSelector("#message");
     });
 
     it( 'should change topic status as pending', async () => {
-        await page.setViewport( { width: 1366, height: 768 } );
-        await page.click( '#menu-posts-topic' );
         await page.waitForSelector( '#menu-posts-topic > ul > li:nth-child(3) > a', { visible: true } );
         await page.click( '#menu-posts-topic > ul > li:nth-child(3) > a' );
         await page.waitForSelector( '#title', { visible: true } );
@@ -91,20 +84,18 @@ describe( 'Automate topics from backend', () => {
         await page.select( "#post_status_select", attr[0] );
         await page.keyboard.press( 'Enter')
         await page.waitForSelector( '#publish', { visible: true } );
-        await page.click( '#publish' );
-        expect( await isElementExist( "#sample-permalink" ) ).toBe( true );
+        await page.click( '#publish' ); 
+        await page.waitForSelector("#message");
     });
 
-    it( 'should change topic status as pending', async () => {
-        await page.setViewport( { width: 1366, height: 768 } );
-        await page.click( '#menu-posts-topic' );
+    it( 'should create topic tag', async () => {
         await page.waitForSelector( '#menu-posts-topic > ul > li:nth-child(4) > a', { visible: true } );
         await page.click( '#menu-posts-topic > ul > li:nth-child(4) > a' );
         await page.waitForSelector( '#tag-name', { visible: true } );
         await page.type( '#tag-name','Programming' );
         await page.type( '#tag-slug','Programming' );
         await page.type( '#tag-description','This topic is related to Programming' );
-        await page.click( '#submit' ); 
+        await page.click( '#submit' );
+        await page.waitForSelector("#message");
     })
 });
-

@@ -2,11 +2,10 @@ import {
     visitAdminPage,
 } from '@wordpress/e2e-test-utils';
 
-
 describe( 'Automate topics from frontend', () => {
     it( 'should subscribe new forum', async () => {
         await visitAdminPage( '/' );
-        await page.setViewport( { width: 1366, height: 768 } );
+        await page.setViewport( { width: 1536, height: 808 } );
         await page.click( "#menu-posts-forum" );
         await page.waitForSelector( '#menu-posts-forum > ul > li:nth-child(3) > a', { visible: true } );
         await page.click( "#menu-posts-forum > ul > li:nth-child(3) > a" );
@@ -30,8 +29,10 @@ describe( 'Automate topics from frontend', () => {
         await page.select( '#bbp_topic_status_select', topic_status[0] );
         await page.waitForSelector( '#bbp_topic_submit', { visible: true } );
         await page.click( '#bbp_topic_submit' );
+        await page.setViewport( { width: 1366, height: 768 } );
+        await page.waitForSelector( '#wp-admin-bar-my-account', { visible: true } ); 
         await page.hover( '#wp-admin-bar-my-account' ); // Doing logout at the end of test cases 
-        await page.waitForSelector( '#wp-admin-bar-logout' );
+        await page.waitForSelector( '#wp-admin-bar-logout', { visible: true } );
         await page.click( '#wp-admin-bar-logout' );
     });
 });

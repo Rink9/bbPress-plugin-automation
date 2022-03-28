@@ -15,9 +15,10 @@ describe( 'Automate forum from frontend', () => {
         await page.waitForSelector( '#sample-permalink', { visible: true } );
         await page.click( '#sample-permalink' );
         await page.waitForSelector( '.subscription-toggle' ); // subscribing forum
-        await page.click( '.subscription-toggle', { visible: true } )  
+        await page.click( '.subscription-toggle', { visible: true } );
+        await page.setViewport( { width: 1366, height: 768 } );
         await page.hover( '#wp-admin-bar-my-account' ); // Doing logout at the end of test cases 
-        await page.waitForSelector( '#wp-admin-bar-logout' );
+        await page.waitForSelector( '#wp-admin-bar-logout', { visible: true } );
         await page.click( '#wp-admin-bar-logout' );
     });
 });

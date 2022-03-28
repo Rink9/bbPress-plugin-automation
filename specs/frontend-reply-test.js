@@ -35,8 +35,9 @@ describe( 'Automate reply from frontend', () => {
         await page.waitForSelector( '#bbp_reply_content', { visible: true } );
         await page.type( '#bbp_reply_content','Replying to a topic' );
         await page.click( '#bbp_reply_submit' );
+        await page.setViewport( { width: 1366, height: 768 } );
         await page.hover( '#wp-admin-bar-my-account' ); // Doing logout at the end of test cases 
-        await page.waitForSelector( '#wp-admin-bar-logout' );
+        await page.waitForSelector( '#wp-admin-bar-logout', { visible: true } );
         await page.click( '#wp-admin-bar-logout' );
     });
 });
